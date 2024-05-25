@@ -22,5 +22,5 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry-exec-plugin.commands]
-get-vsjet-latest = "echo Updating to latest vsjet packages; poetry run python ./.scripts/get_vsjet_latest.py; poetry add vsjet"
+vsjet-latest = "echo Updating to latest vsjet packages; poetry run python ./.scripts/vsjet_latest.py;"
 lint = "flake8 . && mypy ."
