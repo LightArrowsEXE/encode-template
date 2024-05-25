@@ -1,0 +1,6 @@
+{
+    "project_name": "Show Name",
+    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
+    "description": "Encode project of {{ cookiecutter.project_name }}",
+    "version": "1.0.0"
+}

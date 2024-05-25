@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "{{ cookiecutter.project_slug }}"
+version = "{{ cookiecutter.version }}"
+description = "{{ cookiecutter.description }}"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+vapoursynth = "^68"
+toml = "^0.10.2"
+gitpython = "^3.1.43"
+vsjet = "^3.1.2"
+vsmuxtools = "^0.1.0"
+encode-framework = {git = "https://github.com/Lights-Silly-Projects/Encoding-Framework.git", rev = "master"}
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "^7.0.0"
+mypy = "^1.10.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry-exec-plugin.commands]
+get-vsjet-latest = "echo Updating to latest vsjet packages; poetry run python ./.scripts/get_vsjet_latest.py; poetry add vsjet"
+lint = "flake8 . && mypy ."
