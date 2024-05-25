@@ -61,17 +61,15 @@ def main() -> None:
     project_dir = Path.cwd()
     os.chdir(project_dir)
 
-    run_command(['poetry', 'remove', 'vsjet'])
+    heads = list[str]()
 
     for package in VSJET_PACKAGES:
-        package_name = f'vs{package}'
         remote_url = GITHUB_BASE_URL.format(package=f"vs-{package}")
 
         head = lsremote(remote_url)['HEAD']
-        git_url = f'git+{remote_url}@{head}'
+        heads.append(f'git+{remote_url}@{head}')
 
-        run_command(['poetry', 'remove', package_name], exit_on_error=False)
-        run_command(['poetry', 'add', git_url])
+    run_command(['poetry', 'add', *heads])
 
 
 if __name__ == "__main__":
