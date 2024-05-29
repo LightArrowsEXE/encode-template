@@ -1,9 +1,10 @@
 import warnings
 
-from boilerplate import Log, ScriptBoilerplate, get_src_paths, script_info
-from encode_framework import DiscordEmbedder, Encoder, Preview, Zones
+from encode_framework import DiscordEmbedder, Encoder, ScriptInfo, Zones
 from vspreview import is_preview
 from vstools import core, vs
+
+from boilerplate import Log, ScriptBoilerplate, get_src_paths, preview
 
 try:
     from filterchain import filterchain, prefilterchain
@@ -14,6 +15,7 @@ except ModuleNotFoundError:
 
 # Boilerplate.
 core.set_affinity()
+script_info = ScriptInfo(__file__)
 boilerplate = ScriptBoilerplate(script_info)
 
 # Indexing the clip.
@@ -64,10 +66,10 @@ if loaded_filterchain:
         src = prefiltered_clip
 
 
-if __name__ == "__vspreview__":  # Previewing filtering.
-    preview = Preview(script_info)
+if __name__ == "__vspreview__":  # Previewing filterchain.
+    preview(boilerplate, script(src))
 elif __name__ == "__main__":  # Running muxtools.
-    enc = Encoder(script_info, filterchain(src, draft=False))  # type:ignore
+    enc = Encoder(script_info, script(src, draft=False))  # type:ignore
     embed = DiscordEmbedder(script_info, (enc, boilerplate.audio_encoder))  # type:ignore
 
     embed.start()
@@ -95,7 +97,7 @@ elif __name__ == "__main__":  # Running muxtools.
         raise embed.fail(exception=e)
 elif __name__ == "__vapoursynth__":  # Running vspipe or an external package.
     Log.warn("Running via an external package.", script_info.show_title)
-    enc = Encoder(boilerplate.script_info, filterchain(src, draft=False))  # type:ignore
+    enc = Encoder(boilerplate.script_info, script(src, draft=False))  # type:ignore
     enc.prepare_vspipe()
 else:  # Running something else...?
     Log.debug(f"Running via an unsupported method. __name__ == {__name__}", script_info.show_title)
