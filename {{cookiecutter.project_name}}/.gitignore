@@ -1,1 +1,15 @@
+.eggs/
+.mypy_cache/
+.vscode/
+.vspreview/
+*.egg-info/*
+*.glsl
+*.pyc
+*.vpy
+/tests/**
+build/
+dist/
+venv/
+*test*.*
+
 auth.ini
