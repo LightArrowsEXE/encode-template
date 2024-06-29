@@ -1,0 +1,10 @@
+--fps {fps_num}/{fps_den} --videoformat ntsc --range {range}
+--colormatrix {matrix} --colorprim {primaries} --transfer {transfer}
+--min-luma {min_luma} --max-luma {max_luma} --chromaloc {chromaloc}
+--sar {sarnum}:{sarden}
+--preset slow --crf 11.0 --deblock=-2:-2 --min-keyint {min_keyint} --keyint {keyint} --ref 5 --bframes 8
+--aq-mode 3 --aq-strength 0.69 --qcomp 0.69 --cbqpoffs -3 --crqpoffs -3 --rc-lookahead {lookahead}
+--rd 4 --rdoq-level 2 --psy-rd 2.0 --psy-rdoq 2.0 --no-open-gop --no-cutree --qpstep 2
+--b-intra --weightb --tu-intra-depth 2 --tu-inter-depth 2 --tskip --no-limit-modes
+--ctu 32 --max-tu-size 16 --rskip 0 --no-strong-intra-smoothing --no-sao --no-sao-non-deblock
+--output-depth {bits}
