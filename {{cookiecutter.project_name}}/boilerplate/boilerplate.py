@@ -9,7 +9,8 @@ from vsmuxtools.video.encoders import VideoEncoder
 from .logger import Log
 
 __all__: list[str] = [
-    "ScriptBoilerplate"
+    "ScriptBoilerplate",
+    "ScriptInfo",
 ]
 
 
@@ -48,9 +49,5 @@ class ScriptBoilerplate:
         Log.debug(f"Video encoder: {self.video_encoder}", self)
         Log.debug(f"Audio encoder: {self.audio_encoder}", self)
 
-    def setup(self):
-        """Set up the script via muxtools."""
-
-        Log.debug("Setting up script info.", self.setup)
-
+        Log.debug("Setting up script info.", self)
         self.script_info.setup_muxtools()
