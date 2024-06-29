@@ -14,7 +14,7 @@ def get_src_paths(
     """
     Get the source paths for the script as a list of SPaths.
 
-    :param dir:                     The source directory.
+    :param dir:                     The source directory. If a file is passed instead, it will be returned as a list.
     :param script_filename:         The script filename.
     :param suffix:                  The suffix of the source file.
     :param recursive:               Whether to search recursively.
@@ -25,6 +25,10 @@ def get_src_paths(
     """
 
     src_dir = SPath(dir)
+
+    if not src_dir.is_dir():
+        return [src_dir]
+
     src_name = SPath(script_filename).with_suffix(suffix).to_str().split('_')[-1]
 
     results = list(src_dir.rglob(src_name) if recursive else src_dir.glob(src_name))
